@@ -55,7 +55,7 @@ public class ScoreStatistics extends AppCompatActivity {
         /* table title */
         TableLayout tableLayout = (TableLayout)this.findViewById(R.id.tableLayout);
         tableLayout.addView(getRow(new String[]{
-                "Stud",
+                "Student",
                 "Q1",
                 "Q2",
                 "Q3",
