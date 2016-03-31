@@ -27,19 +27,24 @@
             android:layout_height="wrap_content"
             android:text="Pause"
             android:id="@+id/pauseAudio"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            />
+
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Start"
             android:id="@+id/startAudio"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            />
+
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Stop"
             android:id="@+id/stopAudio"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            />
     </LinearLayout>
 
 </LinearLayout>

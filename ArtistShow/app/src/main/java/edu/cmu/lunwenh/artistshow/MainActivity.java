@@ -58,44 +58,13 @@ public class MainActivity extends AppCompatActivity {
         linearLayout = (LinearLayout) this.findViewById(R.id.linearLayout);
         reloadCarImage();
 
-/*      final FragmentManager fragmentManager = this.getFragmentManager();
+        PersonalInfo firstFragment = new PersonalInfo();
 
-        Button personalInfoButton = (Button)this.findViewById(R.id.personalInfoButton);
-        personalInfoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new PersonalInfo());
-                fragmentTransaction.commit();
-            }
-        });
-        Button songsButton = (Button)this.findViewById(R.id.songsButton);
-        songsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new Songs());
-                fragmentTransaction.commit();
-            }
-        });
-        Button vediosButton = (Button)this.findViewById(R.id.vediosButton);
-        vediosButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new Vedios());
-                fragmentTransaction.commit();
-            }
-        });
-        Button emailButton = (Button)this.findViewById(R.id.sendEmailButton);
-        emailButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, new SendEmail());
-                fragmentTransaction.commit();
-            }
-        });*/
+        firstFragment.setArguments(getIntent().getExtras());
+
+        getFragmentManager().beginTransaction().add(
+                R.id.fragment_container,
+                firstFragment).commit();
     }
 
     public void selectFragment(View view) {
@@ -111,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
         }
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, fragment);
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
