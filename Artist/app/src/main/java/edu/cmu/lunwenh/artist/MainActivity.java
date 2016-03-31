@@ -9,9 +9,12 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Surface;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -192,19 +195,17 @@ public class MainActivity extends AppCompatActivity {
                 Button startButton = (Button)popupView.findViewById(R.id.startAudio);
                 Button stopButton = (Button)popupView.findViewById(R.id.stopAudio);
 
-                VideoView videoView = (VideoView)findViewById(R.id.videoView);
 
                 String item = (String)listViewAudio.getItemAtPosition(position);
                 final MediaPlayer mediaPlayer;
                 try{
-                    AssetFileDescriptor assetFileDescriptor = getAssets().openFd(item);
+                    AssetFileDescriptor assetFileDescriptor = getAssets().openFd("audio/" + item);
                     mediaPlayer = new MediaPlayer();
                     mediaPlayer.setDataSource(
                             assetFileDescriptor.getFileDescriptor(),
                             assetFileDescriptor.getStartOffset(),
                             assetFileDescriptor.getLength()
                     );
-                    mediaPlayer.setDisplay(videoView.getHolder());
 
                     mediaPlayer.prepare();
 
@@ -232,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                popupWindow.showAtLocation(listViewAudio, Gravity.CENTER, 0, 0);
             }
         });
     }
@@ -253,42 +255,60 @@ public class MainActivity extends AppCompatActivity {
                         ViewGroup.LayoutParams.WRAP_CONTENT
                 );
 
+                final VideoView videoView = (VideoView)popupView.findViewById(R.id.videoView);
                 Button pauseButton = (Button)popupView.findViewById(R.id.pauseVedio);
                 Button startButton = (Button)popupView.findViewById(R.id.startVedio);
                 Button stopButton = (Button)popupView.findViewById(R.id.stopVedio);
 
                 String item = (String)listViewVedio.getItemAtPosition(position);
-                final MediaPlayer mediaPlayer;
+
+                if(item.equals("vedio1.mp4")){
+                    videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.vedio1);
+                } else {
+                    videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.vedio2);
+                }
+                //videoView.setVideoPath("file:///assets/vedio/" + item);
+                /*final MediaPlayer mediaPlayer;
                 try{
-                    AssetFileDescriptor assetFileDescriptor = getAssets().openFd(item);
+                    AssetFileDescriptor assetFileDescriptor = getAssets().openFd("vedio/" + item);
                     mediaPlayer = new MediaPlayer();
-                    mediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor());
-                    mediaPlayer.prepare();
+                    mediaPlayer.setDisplay(videoView.getHolder());
+                    mediaPlayer.setDataSource(
+                            assetFileDescriptor.getFileDescriptor(),
+                            assetFileDescriptor.getStartOffset(),
+                            assetFileDescriptor.getLength()
+                    );
+                    mediaPlayer.prepare();*/
 
                     pauseButton.setOnClickListener(new Button.OnClickListener() {
 
                         public void onClick(View arg0) {
-                            mediaPlayer.pause();
+                            //mediaPlayer.pause();
+                            videoView.pause();
                         }
                     });
 
                     startButton.setOnClickListener(new Button.OnClickListener() {
 
                         public void onClick(View arg0) {
-                            mediaPlayer.start();
+//                            mediaPlayer.start();
+                            videoView.start();
                         }
                     });
 
-                    stopButton.setOnClickListener(new Button.OnClickListener() {
+                stopButton.setOnClickListener(new Button.OnClickListener() {
 
-                        public void onClick(View arg0) {
-                            mediaPlayer.stop();
-                            popupWindow.dismiss();
-                        }
+                    public void onClick(View arg0) {
+//                            mediaPlayer.stop();
+                        videoView.stopPlayback();
+                        popupWindow.dismiss();
+                    }
                     });
-                } catch (IOException e) {
+/*                } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
+
+                popupWindow.showAtLocation(listViewVedio, Gravity.CENTER, 0, 0);
             }
         });
     }
