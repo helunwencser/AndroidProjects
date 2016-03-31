@@ -5,11 +5,15 @@
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray">
 
-    <VideoView
+    <ListView
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/videoView"
-        android:layout_weight="4" />
+        android:id="@+id/listViewOfAudio"
+        android:textAlignment="center"
+        android:layout_weight="2">
+
+    </ListView>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -17,25 +21,25 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1">
+
         <Button
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Pause"
-            android:id="@+id/pauseVedio"
+            android:id="@+id/pauseAudio"
             android:layout_weight="1"/>
-
         <Button
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Start"
-            android:id="@+id/startVedio"
+            android:id="@+id/startAudio"
             android:layout_weight="1"/>
-
         <Button
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Stop"
-            android:id="@+id/stopVedio"
+            android:id="@+id/stopAudio"
             android:layout_weight="1"/>
     </LinearLayout>
+
 </LinearLayout>

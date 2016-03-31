@@ -31,17 +31,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Personal Info"
-                android:id="@+id/personalInfo"
+                android:id="@+id/personalInfoButton"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="selectFragment"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Songs"
-                android:id="@+id/songs"
+                android:id="@+id/songsButton"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="selectFragment"/>
 
         </LinearLayout>
 
@@ -55,28 +57,29 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Vedios"
-                android:id="@+id/vedios"
+                android:id="@+id/vediosButton"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="selectFragment"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Add to email"
-                android:id="@+id/addToEmail"
+                android:id="@+id/sendEmailButton"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="selectFragment"/>
         </LinearLayout>
 
     </LinearLayout>
 
     <fragment
-        android:name="edu.cmu.lunwenh.artist.PersonalInfo"
+        android:name="edu.cmu.lunwenh.artistshow.PersonalInfo"
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"/>
-
 
 </LinearLayout>
 
