@@ -7,6 +7,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -50,7 +52,7 @@ public class ScoreStatistics extends AppCompatActivity {
         }
 
         /* get all records stroed in database */
-        List<Record> records = dbController.selectRecords();
+        final List<Record> records = dbController.selectRecords();
 
         /* table title */
         TableLayout tableLayout = (TableLayout)this.findViewById(R.id.tableLayout);
@@ -75,34 +77,24 @@ public class ScoreStatistics extends AppCompatActivity {
             }));
         }
 
-        /* statistics information */
-        int[] highScores = getHighScores(records);
-        tableLayout.addView(getRow(new String[]{
-                "High Score",
-                new Integer(highScores[0]).toString(),
-                new Integer(highScores[1]).toString(),
-                new Integer(highScores[2]).toString(),
-                new Integer(highScores[3]).toString(),
-                new Integer(highScores[4]).toString(),
-        }));
-        int[] lowScores = getLowScors(records);
-        tableLayout.addView(getRow(new String[]{
-                "Low Score",
-                new Integer(lowScores[0]).toString(),
-                new Integer(lowScores[1]).toString(),
-                new Integer(lowScores[2]).toString(),
-                new Integer(lowScores[3]).toString(),
-                new Integer(lowScores[4]).toString()
-        }));
-        double[] averageScores = getAverageScores(records);
-        tableLayout.addView(getRow(new String[]{
-                "Ave Score",
-                new Double(averageScores[0]).toString(),
-                new Double(averageScores[1]).toString(),
-                new Double(averageScores[2]).toString(),
-                new Double(averageScores[3]).toString(),
-                new Double(averageScores[4]).toString(),
-        }));
+        final Button button = (Button)this.findViewById(R.id.calculate_button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int[] highScores = getHighScores(records);
+                int[] lowScores = getLowScors(records);
+                double[] averageScores = getAverageScores(records);
+                Result resultFragment = new Result();
+                Bundle bundle = new Bundle();
+                bundle.putIntArray("high", highScores);
+                bundle.putIntArray("low", lowScores);
+                bundle.putDoubleArray("average", averageScores);
+                resultFragment.setArguments(bundle);
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, resultFragment).commit();
+                button.setVisibility(View.GONE);
+            }
+        });
     }
 
     /**
