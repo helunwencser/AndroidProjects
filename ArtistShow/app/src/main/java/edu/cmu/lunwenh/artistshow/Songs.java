@@ -44,9 +44,9 @@ public class Songs extends Fragment {
                 String item = (String)listView.getItemAtPosition(position);
                 final MediaPlayer mediaPlayer;
                 if(item.equals("audio1.mp3")) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.audio1);
+                    mediaPlayer = MediaPlayer.create(fragmentView.getContext(), R.raw.audio1);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.audio2);
+                    mediaPlayer = MediaPlayer.create(fragmentView.getContext(), R.raw.audio2);
                 }
                 pauseButton.setOnClickListener(new Button.OnClickListener() {
 

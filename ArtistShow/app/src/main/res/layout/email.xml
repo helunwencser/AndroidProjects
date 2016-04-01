@@ -11,10 +11,10 @@
         android:layout_height="0dp"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/emailFrom"
+        android:id="@+id/emailTo"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
-        android:hint="you email address"/>
+        android:hint="send to"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:id="@+id/suject"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
-        android:hint="email subject"/>
+        android:hint="subject"/>
 
     <EditText
         android:layout_width="match_parent"
